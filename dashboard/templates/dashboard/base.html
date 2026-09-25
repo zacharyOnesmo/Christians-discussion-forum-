@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="{{ lang|default:'sw' }}">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ ui.site_title }}</title>
+    <meta name="description" content="NenoLens is a Swahili-first evidence-based platform for Christian claims, Bible research, and emerging technology analysis." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'dashboard/styles.css' %}" />
+</head>
+<body>
+    <div class="page-shell">
+        <aside class="sidebar">
+            <div class="brand-block">
+                <div class="brand-mark" aria-label="NenoLens logo">N</div>
+                <div>
+                    <h1>NenoLens</h1>
+                    <p>{{ ui.sidebar_intro }}</p>
+                </div>
+            </div>
+
+            <nav class="nav-panel">
+                <a href="{% url 'dashboard' %}?lang={{ lang|default:'sw' }}" class="nav-item active">{{ ui.nav_dashboard }}</a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'profile' %}?lang={{ lang|default:'sw' }}" class="nav-item">{{ ui.profile_title }}</a>
+                {% endif %}
+                <a href="{% url 'dashboard' %}?lang={{ lang|default:'sw' }}" class="nav-item">{{ ui.nav_claims }}</a>
+                <a href="{% url 'dashboard' %}?lang={{ lang|default:'sw' }}" class="nav-item">{{ ui.nav_evidence }}</a>
+                <a href="{% url 'dashboard' %}?lang={{ lang|default:'sw' }}" class="nav-item">{{ ui.nav_reports }}</a>
+            </nav>
+
+            <div class="sidebar-card">
+                <p class="tiny-title">{{ ui.language_switch }}</p>
+                <div class="lang-switcher">
+                    <a href="?lang=sw" class="lang-btn {% if lang == 'sw' %}active{% endif %}">SW</a>
+                    <a href="?lang=en" class="lang-btn {% if lang == 'en' %}active{% endif %}">ENG</a>
+                </div>
+                <div class="sidebar-text">
+                    {% if user.is_authenticated %}
+                        <strong>{{ ui.welcome }} {{ user.username }}</strong>
+                        <p>{{ ui.logged_in_text }}</p>
+                        <p><a href="{% url 'profile' %}?lang={{ lang|default:'sw' }}">{{ ui.profile_title }}</a> / <a href="{% url 'logout' %}?lang={{ lang|default:'sw' }}">{{ ui.logout }}</a></p>
+                    {% else %}
+                        <strong>{{ ui.sidebar_intro }}</strong>
+                        <p>{{ ui.sidebar_desc }}</p>
+                        <p><a href="{% url 'login' %}?lang={{ lang|default:'sw' }}">{{ ui.login }}</a> / <a href="{% url 'register' %}?lang={{ lang|default:'sw' }}">{{ ui.register }}</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <script src="{% static 'dashboard/app.js' %}"></script>
+</body>
+</html>

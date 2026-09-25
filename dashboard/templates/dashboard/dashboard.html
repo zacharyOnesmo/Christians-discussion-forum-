@@ -1,0 +1,340 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="topbar">
+    <div>
+        <p class="eyebrow">{{ ui.eyebrow }}</p>
+        <h2>{{ ui.page_title }}</h2>
+    </div>
+    <span class="status-pill">{{ ui.status }}</span>
+</div>
+
+<div class="hero-banner panel">
+    <div class="hero-copy">
+        <span class="hero-badge">{{ ui.hero_badge }}</span>
+        <h3>{{ ui.hero_title }}</h3>
+        <p>{{ ui.hero_desc }}</p>
+    </div>
+    <div class="hero-kpis">
+        <div>
+            <strong>{{ bible_count }}</strong>
+            <span>{{ ui.stat_bible }}</span>
+        </div>
+        <div>
+            <strong>{{ history_count }}</strong>
+            <span>{{ ui.stat_history }}</span>
+        </div>
+        <div>
+            <strong>{{ tech_count }}</strong>
+            <span>{{ ui.stat_tech }}</span>
+        </div>
+    </div>
+</div>
+
+<div class="visual-gallery">
+    <article class="feature-card feature-bible">
+        <div class="feature-illustration">✝️</div>
+        <div class="feature-meta">
+            <span>{{ ui.feature_scripture }}</span>
+            <h4>{{ ui.feature_scripture_title }}</h4>
+        </div>
+    </article>
+    <article class="feature-card feature-history">
+        <div class="feature-illustration">🕰️</div>
+        <div class="feature-meta">
+            <span>{{ ui.feature_context }}</span>
+            <h4>{{ ui.feature_history_title }}</h4>
+        </div>
+    </article>
+    <article class="feature-card feature-tech">
+        <div class="feature-illustration">⚙️</div>
+        <div class="feature-meta">
+            <span>{{ ui.feature_tech }}</span>
+            <h4>{{ ui.feature_tech_title }}</h4>
+        </div>
+    </article>
+    <article class="feature-card feature-sign">
+        <div class="feature-illustration">🧭</div>
+        <div class="feature-meta">
+            <span>{{ ui.feature_evidence }}</span>
+            <h4>{{ ui.feature_evidence_title }}</h4>
+        </div>
+    </article>
+</div>
+
+<section class="landing-cta panel" id="dashboard-analysis">
+    <div class="cta-copy">
+        <p class="eyebrow">{{ ui.cta_label }}</p>
+        <h3>{{ ui.cta_title }}</h3>
+        <p>{{ ui.cta_desc }}</p>
+        <div class="cta-actions">
+            <a href="#claimForm" class="primary-btn large">{{ ui.cta_primary }}</a>
+            <a href="#report-panel" class="secondary-btn large">{{ ui.cta_secondary }}</a>
+        </div>
+    </div>
+    <div class="cta-art" aria-hidden="true">
+        <div class="art-window">
+            <div class="mini-card card-bible">Bible</div>
+            <div class="mini-card card-history">History</div>
+            <div class="mini-card card-tech">Tech</div>
+            <div class="main-claim-card">
+                <span>Claim review</span>
+                <strong>Fact • Interpretation • Speculation</strong>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="process-grid">
+    <article class="process-card">
+        <div class="process-no">01</div>
+        <h4>{{ ui.process_title_1 }}</h4>
+        <p>{{ ui.process_desc_1 }}</p>
+    </article>
+    <article class="process-card">
+        <div class="process-no">02</div>
+        <h4>{{ ui.process_title_2 }}</h4>
+        <p>{{ ui.process_desc_2 }}</p>
+    </article>
+    <article class="process-card">
+        <div class="process-no">03</div>
+        <h4>{{ ui.process_title_3 }}</h4>
+        <p>{{ ui.process_desc_3 }}</p>
+    </article>
+</section>
+
+<section class="trust-panel panel">
+    <div class="trust-head">
+        <p class="tiny-title">{{ ui.why_title }}</p>
+        <h3>{{ ui.why_subtitle }}</h3>
+    </div>
+    <div class="trust-grid">
+        <div class="trust-item">
+            <span class="trust-icon">📖</span>
+            <h4>{{ ui.trust_bible }}</h4>
+            <p>{{ ui.trust_bible_desc }}</p>
+        </div>
+        <div class="trust-item">
+            <span class="trust-icon">🧠</span>
+            <h4>{{ ui.trust_history }}</h4>
+            <p>{{ ui.trust_history_desc }}</p>
+        </div>
+        <div class="trust-item">
+            <span class="trust-icon">⚙️</span>
+            <h4>{{ ui.trust_tech }}</h4>
+            <p>{{ ui.trust_tech_desc }}</p>
+        </div>
+        <div class="trust-item">
+            <span class="trust-icon">✅</span>
+            <h4>{{ ui.trust_verdict }}</h4>
+            <p>{{ ui.trust_verdict_desc }}</p>
+        </div>
+    </div>
+</section>
+
+<section class="evidence-showcase panel">
+    <div class="showcase-copy">
+        <p class="tiny-title">{{ ui.research_layers_label }}</p>
+        <h3>{{ ui.research_layers_title }}</h3>
+        <p>{{ ui.research_layers_desc }}</p>
+    </div>
+    <div class="signal-stack">
+        <div class="signal signal-one">{{ ui.research_layer_1 }}</div>
+        <div class="signal signal-two">{{ ui.research_layer_2 }}</div>
+        <div class="signal signal-three">{{ ui.research_layer_3 }}</div>
+        <div class="signal signal-four">{{ ui.research_layer_4 }}</div>
+    </div>
+</section>
+
+<section class="methodology-band panel">
+    <div class="methodology-head">
+        <p class="tiny-title">{{ ui.methodology_label }}</p>
+        <h3>{{ ui.methodology_title }}</h3>
+    </div>
+    <div class="methodology-grid">
+        <article class="methodology-card">
+            <span class="method-chip">01</span>
+            <h4>{{ ui.methodology_1 }}</h4>
+            <p>{{ ui.methodology_1_desc }}</p>
+        </article>
+        <article class="methodology-card">
+            <span class="method-chip">02</span>
+            <h4>{{ ui.methodology_2 }}</h4>
+            <p>{{ ui.methodology_2_desc }}</p>
+        </article>
+        <article class="methodology-card">
+            <span class="method-chip">03</span>
+            <h4>{{ ui.methodology_3 }}</h4>
+            <p>{{ ui.methodology_3_desc }}</p>
+        </article>
+        <article class="methodology-card">
+            <span class="method-chip">04</span>
+            <h4>{{ ui.methodology_4 }}</h4>
+            <p>{{ ui.methodology_4_desc }}</p>
+        </article>
+    </div>
+</section>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <span>{{ ui.stat_bible }}</span>
+        <strong>{{ bible_count }}</strong>
+    </div>
+    <div class="stat-card">
+        <span>{{ ui.stat_history }}</span>
+        <strong>{{ history_count }}</strong>
+    </div>
+    <div class="stat-card">
+        <span>{{ ui.stat_tech }}</span>
+        <strong>{{ tech_count }}</strong>
+    </div>
+    <div class="stat-card">
+        <span>{{ ui.stat_sources }}</span>
+        <strong>{{ source_count }}</strong>
+    </div>
+    <div class="stat-card">
+        <span>{{ ui.stat_evidence }}</span>
+        <strong>{{ evidence_count }}</strong>
+    </div>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+    <div class="flash-message">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+<div class="chat-layout">
+    <section class="panel chat-panel">
+        <div class="panel-header">
+            <div>
+                <p class="tiny-title">{{ ui.assistant_title }}</p>
+                <h3>{{ ui.assistant_prompt }}</h3>
+            </div>
+            <span class="online-dot">{{ ui.online }}</span>
+        </div>
+
+        <div class="chat-box" id="chatBox">
+            <div class="message bot">
+                <p>{{ ui.assistant_greeting_1 }}</p>
+            </div>
+            <div class="message bot">
+                <p>{{ ui.assistant_greeting_2 }}</p>
+            </div>
+        </div>
+
+        <form method="post" id="claimForm" class="chat-form" action="?lang={{ lang }}">
+            {% csrf_token %}
+            <input type="hidden" name="lang" value="{{ lang|default:'sw' }}">
+            <div class="field-group">
+                {{ form.claim.label_tag }}
+                {{ form.claim }}
+            </div>
+            <div class="form-actions">
+                <button type="submit" class="primary-btn">{{ ui.analyze }}</button>
+                <button type="button" class="secondary-btn" id="clearChat">{{ ui.clear }}</button>
+            </div>
+        </form>
+
+        <div class="quick-questions">
+            <p class="tiny-title">{{ ui.quick_title }}</p>
+            <div class="quick-tags">
+                {% for question in sample_questions %}
+                    <button type="button" class="quick-btn" data-question="{{ question }}">{{ question }}</button>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="panel summary-panel">
+        <h3>{{ ui.rules_title }}</h3>
+        <ul>
+            {% for rule in ui.rules %}
+                <li>{{ rule }}</li>
+            {% endfor %}
+        </ul>
+
+        <div class="mini-panel">
+            <p class="tiny-title">{{ ui.strategy_title }}</p>
+            <div class="mini-grid">
+                <span>FACT</span>
+                <span>INTERPRETATION</span>
+                <span>SPECULATION</span>
+                <span>UNKNOWN</span>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% if report %}
+<section class="panel report-panel" id="report-panel">
+    <h3>{{ ui.report_title }}</h3>
+
+    <div class="report-grid">
+        <div>
+            <p class="meta-label">{{ ui.claim_label }}</p>
+            <p>{{ report.claim }}</p>
+        </div>
+        <div>
+            <p class="meta-label">{{ ui.brief_answer }}</p>
+            <p>{{ report.brief_answer }}</p>
+        </div>
+        <div>
+            <p class="meta-label">{{ ui.classification }}</p>
+            <p>{{ report.classification }}</p>
+        </div>
+        <div>
+            <p class="meta-label">{{ ui.confidence }}</p>
+            <p>{{ report.confidence }}</p>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h4>{{ ui.claim_dna }}</h4>
+        <p><strong>{{ ui.claim_subject }}:</strong> {{ report.analysis.claim }}</p>
+        <p><strong>{{ ui.biblical_concepts }}:</strong> {{ report.analysis.biblical_concepts|join:', ' }}</p>
+        <p><strong>{{ ui.tech_concepts }}:</strong> {{ report.analysis.technology_concepts|join:', ' }}</p>
+        <p><strong>{{ ui.relationship }}:</strong> {{ report.analysis.relationship }}</p>
+        <p><strong>{{ ui.claim_type }}:</strong> {{ report.analysis.claim_type }}</p>
+    </div>
+
+    <div class="sections">
+        <div>
+            <h4>{{ ui.related_scripture }}</h4>
+            <ul>
+                {% for verse in report.related_verses %}
+                    <li>{{ verse.book }} {{ verse.chapter }}:{{ verse.verse }} — {{ verse.text }}</li>
+                {% empty %}
+                    <li>Hakuna maandiko yaliyo andikwa kwa ukaribu wa haraka.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div>
+            <h4>{{ ui.evidence_label }}</h4>
+            <ul>
+                {% for item in report.evidence %}
+                    <li><strong>{{ item.classification }}</strong> — {{ item.content }}</li>
+                {% empty %}
+                    <li>Hakuna ushahidi uliopatikana.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="panel panel-list">
+    <h3>{{ ui.recent_title }}</h3>
+    <ul class="item-list">
+        {% for claim in recent_claims %}
+        <li>
+            <span>{{ claim.claim }}</span>
+            <span class="tag">{{ claim.status }}</span>
+        </li>
+        {% empty %}
+        <li>Hakuna dai lililorekodiwa bado.</li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

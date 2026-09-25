@@ -1,0 +1,67 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="profile-page">
+    <div class="topbar">
+        <div>
+            <p class="eyebrow">{{ ui.eyebrow }}</p>
+            <h2>{{ ui.profile_title }}</h2>
+        </div>
+        <span class="status-pill">{{ ui.profile_subtitle }}</span>
+    </div>
+
+    <section class="panel profile-hero">
+        <div class="profile-summary">
+            <div class="avatar-shell">{{ user.username|slice:':1'|upper }}</div>
+            <div>
+                <p class="tiny-title">{{ ui.profile_greeting }}</p>
+                <h3>{{ user.username }}</h3>
+                <p>{{ ui.profile_subtitle }}</p>
+            </div>
+        </div>
+
+        <div class="profile-actions">
+            <a href="{% url 'dashboard' %}?lang={{ lang|default:'sw' }}" class="primary-btn">{{ ui.profile_dashboard_link }}</a>
+            <a href="{% url 'dashboard' %}?lang={{ lang|default:'sw' }}#claimForm" class="secondary-btn">{{ ui.profile_analyze_link }}</a>
+        </div>
+    </section>
+
+    <section class="stats-grid profile-grid">
+        <div class="stat-card">
+            <span>{{ ui.profile_total_claims }}</span>
+            <strong>{{ claim_count }}</strong>
+        </div>
+        <div class="stat-card">
+            <span>{{ ui.nav_reports }}</span>
+            <strong>{{ claims|length }}</strong>
+        </div>
+        <div class="stat-card">
+            <span>{{ ui.nav_evidence }}</span>
+            <strong>{{ claims|length }}</strong>
+        </div>
+    </section>
+
+    <section class="panel profile-list-panel">
+        <p class="tiny-title">My investigations / Uchunguzi wangu</p>
+        <h3>{{ ui.profile_recent_activity }}</h3>
+        <div class="claim-card-list">
+            {% for claim in claims %}
+                <article class="claim-card">
+                    <div class="claim-card-head">
+                        <a href="{% url 'claim_detail' claim.pk %}?lang={{ lang|default:'sw' }}" class="claim-link">
+                            <span>{{ claim.claim }}</span>
+                        </a>
+                        <span class="tag">{{ claim.status }}</span>
+                    </div>
+                    <div class="claim-card-meta">
+                        <span>{{ claim.created_at|date:"M d, Y" }}</span>
+                        <span>{{ claim.category }}</span>
+                    </div>
+                </article>
+            {% empty %}
+                <div class="empty-state">{{ ui.profile_empty }}</div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

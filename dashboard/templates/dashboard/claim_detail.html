@@ -1,0 +1,60 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="profile-page">
+    <div class="topbar">
+        <div>
+            <p class="eyebrow">{{ ui.eyebrow }}</p>
+            <h2>{{ ui.claim_detail_title }}</h2>
+        </div>
+        <a href="{% url 'profile' %}?lang={{ lang|default:'sw' }}" class="secondary-btn">{{ ui.claim_detail_back }}</a>
+    </div>
+
+    <section class="panel profile-hero">
+        <div class="profile-summary">
+            <div class="avatar-shell">{{ claim_obj.claim|slice:':1'|upper }}</div>
+            <div>
+                <p class="tiny-title">{{ user.username }}</p>
+                <h3>{{ claim_obj.claim }}</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-grid profile-grid">
+        <div class="stat-card">
+            <span>{{ ui.claim_detail_status }}</span>
+            <strong>{{ claim_obj.status }}</strong>
+        </div>
+        <div class="stat-card">
+            <span>{{ ui.claim_detail_confidence }}</span>
+            <strong>{{ claim_obj.confidence }}</strong>
+        </div>
+        <div class="stat-card">
+            <span>{{ ui.claim_detail_category }}</span>
+            <strong>{{ claim_obj.category }}</strong>
+        </div>
+    </section>
+
+    <section class="panel profile-list-panel">
+        <h3>{{ ui.claim_detail_related }}</h3>
+        <ul class="item-list">
+            {% for verse in related_verses %}
+                <li>{{ verse.book }} {{ verse.chapter }}:{{ verse.verse }} — {{ verse.text }}</li>
+            {% empty %}
+                <li>No related scripture yet.</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section class="panel profile-list-panel">
+        <h3>{{ ui.claim_detail_evidence }}</h3>
+        <ul class="item-list">
+            {% for item in evidence_items %}
+                <li><strong>{{ item.classification }}</strong> — {{ item.content }}</li>
+            {% empty %}
+                <li>No evidence recorded yet.</li>
+            {% endfor %}
+        </ul>
+    </section>
+</div>
+{% endblock %}
